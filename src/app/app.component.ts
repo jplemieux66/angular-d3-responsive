@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { DataModel } from 'src/app/data/data.model';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  data: Observable<DataModel>;
+
+  constructor(private http: HttpClient) {
+    this.data = this.http.get<DataModel>('./assets/data.json');
+  }
 }
